@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% block title%}Crear Oferta{%endblock%}
+{% block content%}
+
+<h1>Crear Nueva Oferta</h1>
+<form method="post">
+    {% csrf_token %}   <!--Token para proteger de ataques CSRF-->
+    {{ form.as_p }}    <!--metodo para renderizar el formulario mostrando los campos como parrafo-->
+    <button type="submit">Crear Oferta</button>
+
+
+</form>
+
+
+{%endblock%} 

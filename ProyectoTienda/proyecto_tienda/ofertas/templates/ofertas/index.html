@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %} OFERTAS {% endblock %}
+{% block content %} 
+{% load static %}
+
+    <div style="text-align: center;">
+        <h1>Bienvenidos a la sección de Ofertas</h1>
+        <p>Fecha de hoy: {{current_date|date:"d-m-Y"}}</p>
+        {% if error%}
+        <div class="alert alert-danger"> {{error}}</div>
+        {% endif %}
+
+    </div>
+
+    <div>
+        <h3>Aquí puedes ver la lista de ofertas</h3>
+        <!--<p>¿Hay oferta especial Hoy?: {{is_special_offert|yesno:'Si,No'}}</p>
+    -->
+        {% if ofertas %}
+            <h2>Productos en Oferta!!</h2>
+            <ol>
+                {% for oferta in ofertas %}
+                    <li>{{oferta.producto.nombre}} - Precio Original: ${{oferta.producto.precio}} - Precio Con Descuento: ${{oferta.precio_descuento}}
+                        Descuento: {{oferta.porcentaje_descuento}}%
+                    </li>
+                {% endfor %}
+                
+            </ol>
+        {% else %}
+            <p><img src="{% static 'img/ofertas.jpg' %}"></p>
+            
+        {% endif %}
+
+    </div>
+    <br>
+    <br>
+
+    <div>
+        <h4>Aquí puedes navegar a las otras app o regresar al inicio</h4>
+        
+        <a href="{% url 'productos:index'  %}">Ir a Productos</a>
+        <br>
+        <a href="{% url 'index' %}">Ir a la pagina Principal</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% block title%}Eliminar Oferta{%endblock%}
+{% block content%}
+
+<h1>Eliminar Oferta</h1>
+<h4>¿Esta seguro de eliminar la oferta para el producto <strong>{{oferta.producto.nombre}}</strong> ?</h4>
+<form metho="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Confirmar</button>
+</form>
+
+<a href="{% url 'ofertas:index' %}"> Cancelar</a>
+
+{%endblock%}
